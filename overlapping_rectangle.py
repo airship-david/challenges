@@ -179,6 +179,26 @@ def overlapping(a: Rectangle, b: Rectangle):
     # |____________|
     elif b.bl['x'] < a.bl['x'] < a.tr['x'] < b.tr['x'] and b.bl['y'] < a.bl['y'] < a.tr['y'] < b.tr['y']:
         return [[a.bl['x'], a.bl['y']], [a.tr['x'], a.tr['y']]]
+    # 15.
+    #     ______
+    #  __|______|__
+    # |  |      |  |
+    # |A |  B   |  |
+    # |  |      |  |
+    # |__|______|__|
+    #    |______|
+    elif a.bl['x'] < b.bl['x'] < b.tr['x'] < a.tr['x'] and b.bl['y'] < a.bl['y'] < a.tr['y'] < b.tr['y']:
+        return [[b.bl['x'], a.bl['y']], [b.tr['x'], a.tr['y']]]
+    # 16.
+    #     ______
+    #  __|______|__
+    # |  |      |  |
+    # |B |  A   |  |
+    # |  |      |  |
+    # |__|______|__|
+    #    |______|
+    elif b.bl['x'] < a.bl['x'] < a.tr['x'] < b.tr['x'] and a.bl['y'] < b.bl['y'] < b.tr['y'] < a.tr['y']:
+        return [[a.bl['x'], b.bl['y']], [a.tr['x'], b.tr['y']]]
     # No overlap
     else:
         return [[0, 0], [0, 0]]
